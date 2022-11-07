@@ -16,7 +16,8 @@ const library = [];
 
 const btn = document.getElementById("btn");
 
-const addToLibrary = () => {
+const addToLibrary = (event) => {
+  event.preventDefault();
   let title = document.getElementById("title").value;
   let author = document.getElementById("author").value;
   let pages = document.getElementById("pages").value;
@@ -38,7 +39,20 @@ const clear = () => {
   });
 };
 
-btn.addEventListener("click", () => {
-  addToLibrary();
+const allBooks = document.getElementById("books");
+const updateLibrary = () => {
+  allBooks.innerHTML = "";
+  library.forEach((book) => {
+    const div = document.createElement("div");
+    div.innerHTML = book.info();
+    allBooks.appendChild(div);
+  });
+};
+
+btn.addEventListener("click", (event) => {
+  addToLibrary(event);
   clear();
+  updateLibrary();
 });
+
+updateLibrary();
