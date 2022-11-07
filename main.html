@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookshop</title>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <p>Feel free to add to/review your booklist.</p>
+    <div>
+      <input type="text" name="title" id="title" placeholder="Book title">
+      <input type="text" name="author" id="author" placeholder="Book author">
+      <input type="number" name="pages" id="pages" placeholder="Number os pages" min="1">
+      <fieldset>
+        <legend>Have you read it?</legend>
+        <div>
+          <input type="radio" name="readit" id="yes" value="yes">
+          <label for="yes">Yes</label>
+        </div>
+        <div>
+          <input type="radio" name="readit" id="no" value="no">
+          <label for="no">No</label>
+        </div>
+      </fieldset>
+      <button type="submit" id="btn">Save</button>
+    </div>
+  </body>
+  <script src="./book.js"></script>
+</html>
