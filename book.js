@@ -23,11 +23,7 @@ const addToLibrary = (event) => {
   let pages = document.getElementById("pages").value;
   let read;
   let yesOrNo = document.querySelector('input[name="readit"]:checked').value;
-  if (yesOrNo === "yes") {
-    read = true;
-  } else {
-    read = false;
-  }
+  yesOrNo === "yes" ? (read = true) : (read = false);
   const book = new Book(title, author, pages, read);
   library.push(book);
 };
@@ -45,6 +41,16 @@ const deleteFromLibrary = (event) => {
   updateLibrary();
 };
 
+const updateStatus = (event) => {
+  const index = event.target.parentNode.dataset.index;
+  library.forEach((book, ind) => {
+    if (index == ind) {
+      book.read = !book.read
+    }
+  })
+  updateLibrary();
+};
+
 const allBooks = document.getElementById("books");
 
 const updateLibrary = () => {
@@ -53,10 +59,14 @@ const updateLibrary = () => {
     const deleteButton = document.createElement("button");
     deleteButton.addEventListener("click", deleteFromLibrary);
     deleteButton.innerText = "Delete";
+    const updateButton = document.createElement("button");
+    updateButton.addEventListener("click", updateStatus);
+    updateButton.innerText = "Update status";
     const div = document.createElement("div");
     div.setAttribute("data-index", index);
     div.innerHTML = book.info();
     div.appendChild(deleteButton);
+    div.appendChild(updateButton);
     allBooks.appendChild(div);
   });
 };
