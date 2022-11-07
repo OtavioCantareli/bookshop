@@ -39,12 +39,24 @@ const clear = () => {
   });
 };
 
+const deleteFromLibrary = (event) => {
+  const index = event.target.parentNode.dataset.index;
+  library.splice(index, 1);
+  updateLibrary();
+};
+
 const allBooks = document.getElementById("books");
+
 const updateLibrary = () => {
   allBooks.innerHTML = "";
-  library.forEach((book) => {
+  library.forEach((book, index) => {
+    const deleteButton = document.createElement("button");
+    deleteButton.addEventListener("click", deleteFromLibrary);
+    deleteButton.innerText = "Delete";
     const div = document.createElement("div");
+    div.setAttribute("data-index", index);
     div.innerHTML = book.info();
+    div.appendChild(deleteButton);
     allBooks.appendChild(div);
   });
 };
@@ -54,5 +66,3 @@ btn.addEventListener("click", (event) => {
   clear();
   updateLibrary();
 });
-
-updateLibrary();
