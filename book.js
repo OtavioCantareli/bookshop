@@ -45,9 +45,9 @@ const updateStatus = (event) => {
   const index = event.target.parentNode.dataset.index;
   library.forEach((book, ind) => {
     if (index == ind) {
-      book.read = !book.read
+      book.read = !book.read;
     }
-  })
+  });
   updateLibrary();
 };
 
